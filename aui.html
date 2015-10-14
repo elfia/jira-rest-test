@@ -1,0 +1,106 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://aui-cdn.atlassian.com/aui-adg/5.9.0/css/aui.css" media="all" />
+	<!-- style for spinner -->
+	<link rel="stylesheet" href="http://www.css-spinners.com/css/spinner/spinner.css" type="text/css" /> 
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://aui-cdn.atlassian.com/aui-adg/5.9.0/js/aui.js"></script>
+	<!-- js for spinner -->
+	<script src="spinner.js"></script>
+	
+	<script src="script.js"></script>
+
+	<!-- for test with Quint -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qunit/1.18.0/qunit.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/qunit/1.18.0/qunit.min.css" />
+	<script src="test.js"></script>
+
+</head>
+
+<body>
+	<div class="page_list">
+
+		<div class="pannel_left"> 
+			<div class="options">
+				<!-- Trigger -->
+				<a href="#dwarfers" aria-owns="dwarfers" aria-haspopup="true" class="aui-button aui-style-default aui-dropdown2-trigger">Order by</a>
+				<!-- Dropdown -->
+				<div id="dwarfers" class="aui-style-default aui-dropdown2">
+					<ul class="aui-list-truncate">
+						<li><a data-bind="click: orderBy('date')">Date Created</a></li>
+						<li><a data-bind="click: orderBy('priority')">Priority</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		    <div class="scroll" data-bind='foreach: tableElements'>   
+				<a href="#" data-bind = "click: $parent.openIssue, attr: {class: $data.id == $parent.bugData().id ? 'list selectedElement' : 'list' }">
+					<img data-bind="attr: {src: $data.fields.issuetype.iconUrl}" />
+					<span class="bug_id" data-bind = "text: $data.key"></span> <br />
+					<span data-bind = "text: $data.fields.summary"></span>
+				</a>              
+		    </div>
+			
+			<div class="pagination" data-bind = "foreach: pages"> 
+				<a href="#" data-bind = "text: $data, click: $parent.changePage, attr: {class: $data == $parent.pageIndex() ? 'selected' : ''}"></a>
+			</div>
+		</div>
+
+		<div class="pannel_right">
+
+			<div id="spinnerBugData" class="spinner-loader">
+	  			Loading…
+			</div>
+			<div id="spinnerData" class="bug_data">
+				<img width="16" data-bind="attr: {src: bugData().fields.project.avatarUrls['16x16']}"/> <a href="#" data-bind = "text: bugData().fields.project.name, href: bugData().fields.project.self"></a> / <a href="#" data-bind = "text: bugData().key"></a> 
+				<h3 data-bind = "text: bugData().fields.summary"></h3>
+				
+				<div class="block">
+					<label>Details</label>
+					<table width="100%">
+						<tr>
+							<td>Type:</td>
+							<td>
+								<img data-bind="attr: {src: bugData().fields.issuetype.iconUrl}" />
+								<span data-bind = "text: bugData().fields.issuetype.name"> </span>
+							</td>
+							<td> Status: </td>
+							<td><span data-bind = "text: bugData().fields.status.name, attr:{class: 'aui-lozenge ' + bugData().fields.status.statusCategory.colorName}"></span></td>
+						</tr>
+						<tr>
+							<td>Priority</td>
+							<td><img width="16" data-bind="attr: {src: bugData().fields.priority.iconUrl}" /> <span data-bind = "text: bugData().fields.priority.name"></span></td>
+							<td>Resolution:</td>
+							<td><span data-bind = "text: bugData().fields.resolution && bugData().fields.resolution.name"></span></td>
+						</tr>
+						<tr>
+							<td>Affexts Version/s</td>
+							<td data-bind="foreach: bugData().fields.versions"><span data-bind = "text: $data.name + ' '"></span></td>
+							<td>Fix Version/s:</td>
+							<td data-bind="foreach: bugData().fields.fixVersions"><span data-bind = "text: $data.name + ' '"></span></td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="block">			
+						<label>Description</label>
+						<p><strong>Pre condition:</strong><br /> Open <a href="#">http://someurlhere.com</a><p>
+						
+						<label>Steps to reproduce</label>
+						<ol>
+							<li> Click on icon </li>
+							<li> Choose some options </li>
+						</ol>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html> 

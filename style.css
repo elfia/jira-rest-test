@@ -1,0 +1,107 @@
+body {
+	padding: 10px;
+	font-size: 16px;
+}
+.page_list {
+	background: #fff;
+}
+.page_list:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+.pannel_left {
+	width: 40%;
+	float: left;
+	border-right: 1px solid #B8B4B4;
+	padding: 10px;
+	background: #fff;
+}
+
+.pannel_left .scroll {
+	height: 650px;
+	overflow-y: auto;
+}
+
+.pannel_left .selectedElement {
+	background: #EBF2F9;
+}
+
+.pannel_left .action a {
+	font-weight: bold;
+}
+
+.pannel_left .bug_id {
+	text-transform: uppercase;
+}
+
+.pannel_right {
+	position: relative;
+	padding: 10px; 
+	background: #fff;
+	overflow: hidden;
+	border-bottom: 1px solid #B8B4B4;
+}
+
+.pannel_right h3 {
+	margin: 5px 0 0;
+}
+
+.pannel_right .block {
+	margin: 20px 0 0;
+	position: relative;
+	padding: 20px 10px 10px;
+	border-top: 1px solid #B8B4B4;
+}
+
+.pannel_right label {
+	position: absolute;
+	top: -10px;
+	left: 0px;
+	padding-right: 5px;
+	font-weight: bold;
+	background: #fff;
+}
+
+.pannel_right .aui-lozenge {
+	font-weight: bold;
+	color: #fff;
+}
+
+.list {
+	display: block;
+	padding: 10px 12px;
+	border-bottom: 1px solid #B8B4B4;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pagination {
+	margin-top: 10px;	
+	float: right;
+}
+
+.pagination .selected {
+	color: #101010;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.options {
+	margin-bottom: 5px;
+}
+
+.spinner-loader {
+	position: absolute;
+    left: 50%;
+    top: 45%;
+}
+
+#spinnerData {
+	visibility: hidden;
+}
